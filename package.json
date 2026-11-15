@@ -1,0 +1,13 @@
+{
+  "name": "liveevent-ticket-marketplace",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/api", "apps/web"],
+  "scripts": {
+    "dev": "concurrently -k \"npm run dev --workspace @liveevent/api\" \"npm run dev --workspace @liveevent/web\"",
+    "build": "npm run build --workspace @liveevent/api && npm run build --workspace @liveevent/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspace @liveevent/api"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}
