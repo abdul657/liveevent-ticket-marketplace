@@ -44,8 +44,13 @@ app.get("/api/events", async (req: Request, res: Response, next: NextFunction) =
 });
 
 app.get("/api/events/:slug", async (req: Request, res: Response, next: NextFunction) => {
+  const slug = req.params.slug;
+  if (!slug) {
+    res.status(400).json({ error: "An event slug is required" });
+    return;
+  }
   try {
-    const result = await getEventBySlug(req.params.slug);
+    const result = await getEventBySlug(slug);
     if (!result) {
       res.status(404).json({ error: "Event not found" });
       return;
